@@ -24,10 +24,12 @@ namespace PolaroidPostsApi.Models
                     new PostItem
                     {
                         Username = "Chris",
-                        ImageURL = "https://www.laravelnigeria.com/img/chris.jpg",
+                        ImageURL = "https://pbs.twimg.com/media/DOXI0IEXkAAkokm.jpg",
                         Caption = "Moving the community!",
                         Uploaded = "07-10-18 4:20T18:25:43.511Z",
-                        Likes = 12
+                        Likes = 12,
+                        Email = "iam@preetpatel.com",
+                        AvatarURL = "https://www.laravelnigeria.com/img/chris.jpg"
                     }
 
 

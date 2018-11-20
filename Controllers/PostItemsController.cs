@@ -124,17 +124,12 @@ namespace PolaroidPostsApi.Controllers
             return Ok(postItem);
         }
 
-        // GET: api/postitems/username
-        [Route("username")]
-        [HttpGet]
-        public async Task<List<string>> GetTags()
+        // GET: api/postitems/iam@preetpatel.com
+        [HttpGet("filter/{Email}")]
+        public IEnumerable<PostItem> GetPostByEmail([FromRoute] string Email)
         {
-            var posts = (from m in _context.PostItem
-                         select m.Username).Distinct();
-
-            var returned = await posts.ToListAsync();
-
-            return returned;
+            
+            return _context.PostItem.Where(p => p.Email.Equals(Email));
         }
 
         private bool PostItemExists(int id)
@@ -154,6 +149,7 @@ namespace PolaroidPostsApi.Controllers
                 using (var stream = polaroidImage.Image.OpenReadStream())
                 {
                     var cloudBlock = await UploadToBlob(polaroidImage.Image.FileName, null, stream);
+                    
                     //// Retrieve the filename of the file you have uploaded
                     //var filename = provider.FileData.FirstOrDefault()?.LocalFileName;
                     if (string.IsNullOrEmpty(cloudBlock.StorageUri.ToString()))
@@ -164,6 +160,9 @@ namespace PolaroidPostsApi.Controllers
                     PostItem postItem = new PostItem();
                     postItem.Username = polaroidImage.Username;
                     postItem.Caption = polaroidImage.Caption;
+                    postItem.Email = polaroidImage.Email;
+                    postItem.AvatarURL = polaroidImage.Avatar;
+                   
 
                     System.Drawing.Image image = System.Drawing.Image.FromStream(stream);
                     postItem.ImageURL = cloudBlock.SnapshotQualifiedUri.AbsoluteUri;

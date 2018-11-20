@@ -13,5 +13,7 @@ namespace PolaroidPostsApi.Models
         public string Caption { get; set; }
         public string Uploaded { get; set; }
         public int Likes { get; set; }
+        public string Email { get; set; }
+        public string AvatarURL { get; set; }
     }
 }

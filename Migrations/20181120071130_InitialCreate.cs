@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PolaroidPostsApi.Migrations
 {
@@ -12,12 +11,14 @@ namespace PolaroidPostsApi.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Sqlite:Autoincrement", true),
                     Username = table.Column<string>(nullable: true),
                     ImageURL = table.Column<string>(nullable: true),
                     Caption = table.Column<string>(nullable: true),
                     Uploaded = table.Column<string>(nullable: true),
-                    Likes = table.Column<int>(nullable: false)
+                    Likes = table.Column<int>(nullable: false),
+                    Email = table.Column<string>(nullable: true),
+                    AvatarURL = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

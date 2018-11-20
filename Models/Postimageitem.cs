@@ -11,5 +11,7 @@ namespace PolaroidPostsApi.Models
         public string Username { get; set; }
         public IFormFile Image { get; set; }
         public string Caption { get; set; }
+        public string Email { get; set; }
+        public string Avatar { get; set; }
     }
 }
