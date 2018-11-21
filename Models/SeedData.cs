@@ -5,17 +5,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace PolaroidPostsApi.Models
+namespace PolaroidAPI.Models
 {
-    public class SeedData
+    public static class SeedData
     {
         public static void Initialize(IServiceProvider serviceProvider)
         {
-            using (var context = new PolaroidPostsApiContext(
-                serviceProvider.GetRequiredService<DbContextOptions<PolaroidPostsApiContext>>()))
+            using (var context = new PolaroidAPIContext(
+                serviceProvider.GetRequiredService<DbContextOptions<PolaroidAPIContext>>()))
             {
                 // Look for any movies.
-                if (context.PostItem.Count() > 0)
+                if (context.PostItem.Count() > 0 && context.UserItem.Count() > 0)
                 {
                     return;   // DB has been seeded
                 }
@@ -23,17 +23,29 @@ namespace PolaroidPostsApi.Models
                 context.PostItem.AddRange(
                     new PostItem
                     {
-                        Username = "Chris",
+                        UserID = 1,
                         ImageURL = "https://pbs.twimg.com/media/DOXI0IEXkAAkokm.jpg",
                         Caption = "Moving the community!",
-                        Uploaded = "07-10-18 4:20T18:25:43.511Z",
+                        Uploaded = DateTime.Now,
                         Likes = 12,
-                        Email = "iam@preetpatel.com",
-                        AvatarURL = "https://www.laravelnigeria.com/img/chris.jpg"
                     }
-
-
                 );
+                context.UserItem.AddRange(
+                    new UserItem
+                    {
+                        Username = "seed",
+                        Name = "Pineapple Seed",
+                        Email = "demo@preetpatel.com",
+                        AvatarURL = "https://pbs.twimg.com/media/DOXI0IEXkAAkokm.jpg",
+                        Bio = "A test account"
+                    });
+                context.Relationships.AddRange(
+                    new Relationships
+                    {
+                        Person = 1,
+                        Follows = 2
+                        
+                    });
                 context.SaveChanges();
             }
         }

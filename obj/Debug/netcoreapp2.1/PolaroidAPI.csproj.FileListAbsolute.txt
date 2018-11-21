@@ -1,0 +1,14 @@
+C:\Users\Preet\source\repos\PolaroidAPI\PolaroidAPI\bin\Debug\netcoreapp2.1\PolaroidAPI.deps.json
+C:\Users\Preet\source\repos\PolaroidAPI\PolaroidAPI\bin\Debug\netcoreapp2.1\PolaroidAPI.runtimeconfig.json
+C:\Users\Preet\source\repos\PolaroidAPI\PolaroidAPI\bin\Debug\netcoreapp2.1\PolaroidAPI.runtimeconfig.dev.json
+C:\Users\Preet\source\repos\PolaroidAPI\PolaroidAPI\bin\Debug\netcoreapp2.1\PolaroidAPI.dll
+C:\Users\Preet\source\repos\PolaroidAPI\PolaroidAPI\obj\Debug\netcoreapp2.1\PolaroidAPI.csproj.CoreCompileInputs.cache
+C:\Users\Preet\source\repos\PolaroidAPI\PolaroidAPI\obj\Debug\netcoreapp2.1\PolaroidAPI.RazorAssemblyInfo.cache
+C:\Users\Preet\source\repos\PolaroidAPI\PolaroidAPI\obj\Debug\netcoreapp2.1\PolaroidAPI.RazorAssemblyInfo.cs
+C:\Users\Preet\source\repos\PolaroidAPI\PolaroidAPI\obj\Debug\netcoreapp2.1\PolaroidAPI.AssemblyInfoInputs.cache
+C:\Users\Preet\source\repos\PolaroidAPI\PolaroidAPI\obj\Debug\netcoreapp2.1\PolaroidAPI.AssemblyInfo.cs
+C:\Users\Preet\source\repos\PolaroidAPI\PolaroidAPI\obj\Debug\netcoreapp2.1\PolaroidAPI.RazorTargetAssemblyInfo.cache
+C:\Users\Preet\source\repos\PolaroidAPI\PolaroidAPI\bin\Debug\netcoreapp2.1\PolaroidAPI.pdb
+C:\Users\Preet\source\repos\PolaroidAPI\PolaroidAPI\obj\Debug\netcoreapp2.1\PolaroidAPI.dll
+C:\Users\Preet\source\repos\PolaroidAPI\PolaroidAPI\obj\Debug\netcoreapp2.1\PolaroidAPI.pdb
+C:\Users\Preet\source\repos\PolaroidAPI\PolaroidAPI\obj\Debug\netcoreapp2.1\PolaroidAPI.csprojAssemblyReference.cache

@@ -11,10 +11,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.EntityFrameworkCore;
-using PolaroidPostsApi.Models;
+using PolaroidAPI.Models;
 using Swashbuckle.AspNetCore.Swagger;
 
-namespace PolaroidPostsApi
+namespace PolaroidAPI
 {
     public class Startup
     {
@@ -30,13 +30,13 @@ namespace PolaroidPostsApi
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            services.AddDbContext<PolaroidPostsApiContext>(options =>
-                    options.UseSqlite(Configuration.GetConnectionString("PolaroidPostsApiContext")));
+            services.AddDbContext<PolaroidAPIContext>(options =>
+                    options.UseSqlite(Configuration.GetConnectionString("PolaroidAPIContext")));
 
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Info { Title = "PolaroidPostsApi", Version = "v1" });
+                c.SwaggerDoc("v1", new Info { Title = "Polaroid", Version = "v1" });
             });
         }
 

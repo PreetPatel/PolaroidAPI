@@ -4,8 +4,8 @@
     "windowsAuthentication": false, 
     "anonymousAuthentication": true, 
     "iisExpress": {
-      "applicationUrl": "http://localhost:50163",
-      "sslPort": 44354
+      "applicationUrl": "http://localhost:54507",
+      "sslPort": 44320
     }
   },
   "profiles": {
@@ -17,7 +17,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "PolaroidPostsApi": {
+    "PolaroidAPI": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "",

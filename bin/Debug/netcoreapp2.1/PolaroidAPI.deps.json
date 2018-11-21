@@ -22,7 +22,7 @@
   },
   "targets": {
     ".NETCoreApp,Version=v2.1": {
-      "PolaroidPostsApi/1.0.0": {
+      "PolaroidAPI/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.App": "2.1.1",
           "Microsoft.AspNetCore.Razor.Design": "2.1.2",
@@ -35,10 +35,10 @@
           "WindowsAzure.Storage": "9.3.2"
         },
         "runtime": {
-          "PolaroidPostsApi.dll": {}
+          "PolaroidAPI.dll": {}
         },
         "compile": {
-          "PolaroidPostsApi.dll": {}
+          "PolaroidAPI.dll": {}
         }
       },
       "Microsoft.AspNetCore.Razor.Design/2.1.2": {},
@@ -3796,7 +3796,7 @@
     }
   },
   "libraries": {
-    "PolaroidPostsApi/1.0.0": {
+    "PolaroidAPI/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

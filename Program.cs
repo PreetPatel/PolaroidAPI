@@ -9,9 +9,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using PolaroidPostsApi.Models;
+using PolaroidAPI.Models;
 
-namespace PolaroidPostsApi
+namespace PolaroidAPI
 {
     public class Program
     {
@@ -25,7 +25,7 @@ namespace PolaroidPostsApi
 
                 try
                 {
-                    var context = services.GetRequiredService<PolaroidPostsApiContext>();
+                    var context = services.GetRequiredService<PolaroidAPIContext>();
                     context.Database.Migrate();
                     SeedData.Initialize(services);
                 }
@@ -38,7 +38,6 @@ namespace PolaroidPostsApi
 
             host.Run();
         }
-
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)

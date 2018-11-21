@@ -9,19 +9,19 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Auth;
 using Microsoft.WindowsAzure.Storage.Blob;
-using PolaroidPostsApi.Helpers;
-using PolaroidPostsApi.Models;
+using PolaroidAPI.Helpers;
+using PolaroidAPI.Models;
 
-namespace PolaroidPostsApi.Controllers
+namespace PolaroidAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class PostItemsController : ControllerBase
     {
-        private readonly PolaroidPostsApiContext _context;
+        private readonly PolaroidAPIContext _context;
         private IConfiguration _configuration;
 
-        public PostItemsController(PolaroidPostsApiContext context, IConfiguration configuration)
+        public PostItemsController(PolaroidAPIContext context, IConfiguration configuration)
         {
             _context = context;
             _configuration = configuration;
@@ -124,21 +124,42 @@ namespace PolaroidPostsApi.Controllers
             return Ok(postItem);
         }
 
-        // GET: api/postitems/iam@preetpatel.com
-        [HttpGet("filter/{Email}")]
-        public IEnumerable<PostItem> GetPostByEmail([FromRoute] string Email)
-        {
-            
-            return _context.PostItem.Where(p => p.Email.Equals(Email));
-        }
-
         private bool PostItemExists(int id)
         {
             return _context.PostItem.Any(e => e.Id == id);
         }
 
+        // GET: api/postitems/userID
+        [HttpGet("filter/{UserID}")]
+        public IEnumerable<PostItem> GetPostByEmail([FromRoute] int userID)
+        {
+
+            return _context.PostItem.Where(p => p.UserID == userID);
+        }
+
+        // GET: api/postitems/userID[]
+        [HttpGet("filterall/")]
+        public IEnumerable<PostItem> GetMultiplePosts([FromQuery] int[] UserID)
+        {
+            List<PostItem> returnList = new List<PostItem>();
+
+            foreach (int i in UserID)
+            {
+                
+                IEnumerable<PostItem> individualUserPosts = _context.PostItem.Where(p => p.UserID == i);
+
+                foreach (PostItem pi in individualUserPosts)
+                {
+                    returnList.Add(pi);
+                }
+
+            }
+            returnList = returnList.OrderByDescending(d => d.Uploaded).ToList();
+            return returnList;
+        }
+
         [HttpPost, Route("upload")]
-        public async Task<IActionResult> UploadFile([FromForm]Postimageitem polaroidImage)
+        public async Task<IActionResult> UploadFile([FromForm]PostImageItems polaroidImage)
         {
             if (!MultipartRequestHelper.IsMultipartContentType(Request.ContentType))
             {
@@ -149,7 +170,7 @@ namespace PolaroidPostsApi.Controllers
                 using (var stream = polaroidImage.Image.OpenReadStream())
                 {
                     var cloudBlock = await UploadToBlob(polaroidImage.Image.FileName, null, stream);
-                    
+
                     //// Retrieve the filename of the file you have uploaded
                     //var filename = provider.FileData.FirstOrDefault()?.LocalFileName;
                     if (string.IsNullOrEmpty(cloudBlock.StorageUri.ToString()))
@@ -158,15 +179,12 @@ namespace PolaroidPostsApi.Controllers
                     }
 
                     PostItem postItem = new PostItem();
-                    postItem.Username = polaroidImage.Username;
+                    postItem.UserID = polaroidImage.UserID;
                     postItem.Caption = polaroidImage.Caption;
-                    postItem.Email = polaroidImage.Email;
-                    postItem.AvatarURL = polaroidImage.Avatar;
-                   
-
+        
                     System.Drawing.Image image = System.Drawing.Image.FromStream(stream);
                     postItem.ImageURL = cloudBlock.SnapshotQualifiedUri.AbsoluteUri;
-                    postItem.Uploaded = DateTime.Now.ToString();
+                    postItem.Uploaded = DateTime.Now;
                     postItem.Likes = 0;
 
                     _context.PostItem.Add(postItem);
@@ -179,8 +197,6 @@ namespace PolaroidPostsApi.Controllers
             {
                 return BadRequest($"An error has occured. Details: {ex.Message}");
             }
-
-
         }
 
         private async Task<CloudBlockBlob> UploadToBlob(string filename, byte[] imageBuffer = null, System.IO.Stream stream = null)
@@ -240,5 +256,6 @@ namespace PolaroidPostsApi.Controllers
                 return "." + extentionList.Last(); //assumes last item is the extension 
             }
         }
+
     }
 }

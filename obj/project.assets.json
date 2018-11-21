@@ -13164,11 +13164,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Preet\\source\\repos\\PolaroidPostsApi\\PolaroidPostsApi\\PolaroidPostsApi.csproj",
-      "projectName": "PolaroidPostsApi",
-      "projectPath": "C:\\Users\\Preet\\source\\repos\\PolaroidPostsApi\\PolaroidPostsApi\\PolaroidPostsApi.csproj",
+      "projectUniqueName": "C:\\Users\\Preet\\source\\repos\\PolaroidAPI\\PolaroidAPI\\PolaroidAPI.csproj",
+      "projectName": "PolaroidAPI",
+      "projectPath": "C:\\Users\\Preet\\source\\repos\\PolaroidAPI\\PolaroidAPI\\PolaroidAPI.csproj",
       "packagesPath": "C:\\Users\\Preet\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Preet\\source\\repos\\PolaroidPostsApi\\PolaroidPostsApi\\obj\\",
+      "outputPath": "C:\\Users\\Preet\\source\\repos\\PolaroidAPI\\PolaroidAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
