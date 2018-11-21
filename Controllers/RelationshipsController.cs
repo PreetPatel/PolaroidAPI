@@ -152,5 +152,22 @@ namespace PolaroidAPI.Controllers
         {
             return _context.Relationships.Where(p => p.Follows.Equals(PersonID));
         }
+
+        // GET: api/relationships/person/{PersonID}/follows/{FollowerID}
+        [HttpGet("person/{PersonID}/follows/{FollowerID}")]
+        public IActionResult CheckRelationship([FromRoute] int PersonID, int FollowerID)
+        {
+            IQueryable<Relationships> initialDB = _context.Relationships.Where(p => p.Person == PersonID);
+            IQueryable<Relationships> resultDB = initialDB.Where(p => p.Follows == FollowerID);
+
+            if (resultDB.Count() > 0)
+            {
+                return Ok();
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
     }
 }
