@@ -143,5 +143,14 @@ namespace PolaroidAPI.Controllers
             return _context.UserItem.Where(p => p.Email.Equals(email));
 
         }
+
+        // GET: api/UserItems/byEmail/iam@preetpatel.com
+        [HttpGet("byUsername/{username}")]
+        public IEnumerable<UserItem> GetUserItemByUserName([FromRoute] string username)
+        {
+
+            return _context.UserItem.Where(p => p.Username.Equals(username));
+
+        }
     }
 }
