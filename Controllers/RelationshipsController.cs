@@ -111,7 +111,7 @@ namespace PolaroidAPI.Controllers
             _context.Relationships.Add(submitData);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetRelationships", new { id = relationships.Id }, relationships);
+            return CreatedAtAction("GetRelationships", new { id = submitData.Id }, relationships);
         }
 
         // DELETE: api/Relationships/5
