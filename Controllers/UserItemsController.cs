@@ -87,7 +87,7 @@ namespace PolaroidAPI.Controllers
 
         // POST: api/UserItems
         [HttpPost]
-        public async Task<IActionResult> PostUserItem([FromBody] UserSingleItem userItem)
+        public async Task<IActionResult> PostUserItem([FromForm] UserSingleItem userItem)
         {
 
             if (_context.UserItem.Where(p => p.Email.Equals(userItem.Email)).Count() != 0)

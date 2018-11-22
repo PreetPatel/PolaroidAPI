@@ -86,7 +86,7 @@ namespace PolaroidAPI.Controllers
 
         // POST: api/Relationships
         [HttpPost]
-        public async Task<IActionResult> PostRelationships([FromBody] RelationshipSingleItem relationships)
+        public async Task<IActionResult> PostRelationships([FromForm] RelationshipSingleItem relationships)
         {
 
             // Same person cant follow himself
