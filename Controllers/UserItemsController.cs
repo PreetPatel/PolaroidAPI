@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using PolaroidAPI.Helpers;
 using PolaroidAPI.Models;
 
 namespace PolaroidAPI.Controllers
@@ -86,12 +87,8 @@ namespace PolaroidAPI.Controllers
 
         // POST: api/UserItems
         [HttpPost]
-        public async Task<IActionResult> PostUserItem([FromBody] UserItem userItem)
+        public async Task<IActionResult> PostUserItem([FromBody] UserSingleItem userItem)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
 
             if (_context.UserItem.Where(p => p.Email.Equals(userItem.Email)).Count() != 0)
             {
@@ -103,10 +100,17 @@ namespace PolaroidAPI.Controllers
                 return Conflict();
             }
 
-            _context.UserItem.Add(userItem);
+            UserItem submitUserItem = new UserItem();
+            submitUserItem.Username = userItem.Username;
+            submitUserItem.Name = userItem.Name;
+            submitUserItem.Email = userItem.Email;
+            submitUserItem.Bio = userItem.Bio;
+            submitUserItem.AvatarURL = userItem.AvatarURL;
+
+            _context.UserItem.Add(submitUserItem);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetUserItem", new { id = userItem.Id }, userItem);
+            return CreatedAtAction("GetUserItem", new { id = submitUserItem.Id }, userItem);
         }
 
         // DELETE: api/UserItems/5

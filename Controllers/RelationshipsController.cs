@@ -86,12 +86,8 @@ namespace PolaroidAPI.Controllers
 
         // POST: api/Relationships
         [HttpPost]
-        public async Task<IActionResult> PostRelationships([FromBody] Relationships relationships)
+        public async Task<IActionResult> PostRelationships([FromBody] RelationshipSingleItem relationships)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
 
             // Same person cant follow himself
             if (relationships.Follows == relationships.Person)
@@ -107,7 +103,12 @@ namespace PolaroidAPI.Controllers
                 return Conflict();
             }
 
-            _context.Relationships.Add(relationships);
+            Relationships submitData = new Relationships();
+
+            submitData.Person = relationships.Person;
+            submitData.Follows = relationships.Follows;
+
+            _context.Relationships.Add(submitData);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetRelationships", new { id = relationships.Id }, relationships);
